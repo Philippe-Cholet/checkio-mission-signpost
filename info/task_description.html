@@ -1,0 +1,95 @@
+<!-- Describe task in general -->
+<p> <!-- Introduction -->
+    This mission is an adaptation of the "Signpost" game (from
+    <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/">
+    Simon Tatham's Portable Puzzle Collection</a>).
+    If you are lost or just want to play, the game is available
+    <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/signpost.html">here</a>.
+</p>
+
+<p> <!-- Quick description -->
+    You're on a rectangular grid. You must find your way to go through
+    the entire grid, following the directions indicated. Some boxes are already
+    given like the start and the end of the path, you have to respect them.
+</p>
+
+<p>
+    The numbers say the location in the path, starting at 1. For example,
+    a box with the number 9 indicates that this box is the ninth on the path.
+</p>
+
+<p> <!-- Representation -->
+    Empty boxes are represented by zeros.
+    Possible directions:
+    north 'N', northwest 'NW', west 'W', southwest 'SW',
+    south 'S', southeast 'SE', east 'E', northeast 'NE'
+    and nothing '' (for the end of the path).
+</p>
+
+<p> <!-- What return? -->
+    Then, you have to return the completed grid representing the path.
+</p>
+
+<pre class="for_info_only" style="text-align:center">
+<img src="{{MEDIA}}example-input.png" alt="5x5 example image" title="5x5 example"/>              <img src="{{MEDIA}}example-output.png" alt="5x5 example image" title="5x5 example"/>
+
+[[1, 0, 0, 0,  0],  (('SE', 'E' , 'SW', 'S' , 'S' ),       [[ 1, 13,  3, 14, 21],
+ [0, 0, 9, 0, 18],   ('E' , 'W' , 'S' , 'NE', 'SW'),        [ 8,  7,  9, 20, 18],
+ [0, 0, 0, 0,  0],   ('S' , 'N' , 'N' , 'N' , 'S' ),  ===\  [ 4,  6,  2, 19, 22],
+ [0, 0, 0, 0,  0],   ('NE', 'N' , 'NE', 'SE', 'W' ),  ===/  [ 5, 12, 17, 24, 23],
+ [0, 0, 0, 0, 25]]   ('NE', 'NE', 'W' , 'W' , ''  ))        [11, 16, 10, 15, 25]]
+</pre>
+
+
+<!-- Explain input and output values -->
+<p>
+    <strong>Input:</strong>
+    A list of lists of integers, and a tuple of tuples of strings.
+</p>
+
+<p>
+    <strong>Output:</strong>
+    A list/tuple of lists/tuples of integers.
+</p>
+
+
+<!-- Put some usage examples -->
+<div class="for_info_only">
+<p>
+    <strong>Example:</strong>
+</p>
+
+<pre class="brush: python">
+signpost([[1, 0, 0],
+          [0, 0, 0],
+          [0, 0, 9]],
+         (('S' , 'E' , 'S' ),
+          ('S' , 'S' , 'NW'),
+          ('NE', 'NE', ''  ))) == [[1, 7, 8],
+                                   [2, 4, 6],
+                                   [3, 5, 9]]
+signpost([[1, 0, 0, 0,  0],
+          [0, 0, 9, 0, 18],
+          [0, 0, 0, 0,  0],
+          [0, 0, 0, 0,  0],
+          [0, 0, 0, 0, 25]],
+         (('SE', 'E' , 'SW', 'S' , 'S' ),
+          ('E' , 'W' , 'S' , 'NE', 'SW'),
+          ('S' , 'N' , 'N' , 'N' , 'S' ),
+          ('NE', 'N' , 'NE', 'SE', 'W' ),
+          ('NE', 'NE', 'W' , 'W' , ''  ))) == [[ 1, 13,  3, 14, 21],
+                                               [ 8,  7,  9, 20, 18],
+                                               [ 4,  6,  2, 19, 22],
+                                               [ 5, 12, 17, 24, 23],
+                                               [11, 16, 10, 15, 25]]
+</pre>
+</div>
+
+<p>
+    <strong>Preconditions:</strong>
+    <ul>
+        <li>Given puzzles are solvable.</li>
+        <li>3 &le; len(grid) &le; 30 and 3 &le; len(grid[0]) &le; 50.</li>
+        <li>len(grid) == len(directions) and all(len(row1) == len(row2) == len(grid[0]) for row1, row2 in zip(grid, directions)).</li>
+    </ul>
+</p>
