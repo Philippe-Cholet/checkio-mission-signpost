@@ -159,11 +159,11 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
             function draw_arrow(coord, d) {
                 const z = SIZE/93.333333333
                 let [y, x] = coord
-                y = y*SIZE+(SIZE/2)+os-5+SIZE/95
-                x = x*SIZE+(SIZE/2)+os-20-SIZE/14
+                y = y*SIZE+(SIZE/2)+os
+                x = x*SIZE+(SIZE/2)+os
                 const deg = {'N': 270, 'NE': 315, 'E': 0, 'SE': 45, 
                     'S': 90, 'SW': 135, 'W': 180, 'NW': 225}
-                paper.path(['M', x, y,
+                paper.path(['M', x-20, y-5,
                             'l', 20, 0,
                             'l', 0, -10,
                             'l', 25, 15,
@@ -171,7 +171,8 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
                             'l', 0, -10,
                             'l', -20, 0,
                             'z'].join(' ')).attr(
-                                attr.arrow).rotate(deg[d]).scale(z)
+                                attr.arrow).rotate(
+                                    deg[d], x, y).scale(z, z, x, y)
             }
         }
 
